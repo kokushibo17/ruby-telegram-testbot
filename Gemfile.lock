@@ -1,18 +1,47 @@
-- name: Set up Ruby environment
+name: Ruby CI
 
-  uses: ruby/setup-ruby@v1
+on: [push, pull_request]
 
-  with:
+jobs:
 
-    ruby-version: 2.7.4
+  build:
 
-- name: Install Bundler
+    runs-on: ubuntu-latest
 
-  run: |
+    steps:
 
-    gem install bundler -v 2.2.29
+    - uses: actions/checkout@v2
 
-    bundle install
+    - name: Set up Ruby
+
+      uses: ruby/setup-ruby@v1
+
+      with:
+
+        ruby-version: 2.7.4
+
+    - name: Install Bundler
+
+      run: |
+
+        gem install bundler -v 2.2.29
+
+        bundle install --jobs 4 --retry 3
+
+    - name: Run tests
+
+      run: |
+
+        bundle exec rspec
+
+
+
+  
+
+
+
+
+
 
 
    
