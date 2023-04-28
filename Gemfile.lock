@@ -1,0 +1,7 @@
+- name: Install dependencies
+
+  run: |
+
+    gem install bundler:<version>
+
+    bundle install --jobs 4 --retry 3
