@@ -1,7 +1,20 @@
-- name: Install dependencies
+- name: Set up Ruby environment
+
+  uses: ruby/setup-ruby@v1
+
+  with:
+
+    ruby-version: 2.7.4
+
+- name: Install Bundler
 
   run: |
 
-    gem install bundler:<version>
+    gem install bundler -v 2.2.29
 
-    bundle install --jobs 4 --retry 3
+    bundle install
+
+
+   
+
+ 
